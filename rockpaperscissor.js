@@ -35,24 +35,47 @@ function playRound(playerChoice,computerChoice){
     // Wann ist draw
 
     if(a == b){
-        return `Draw! Both choose ${a}`
+        console.log(`Draw! Both choose ${a}`)
+        return 0
     };
 
     // Wann ist Win
 
-    if((a == "Rock") && (b == "Scissors")){return win};
-    if((a == "Paper") && (b == "Rock")){return win};
-    if((a == "Scissors") && (b == "Paper")){return win};
+    if((a == "Rock") && (b == "Scissors")){alert(win);return 1};
+    if((a == "Paper") && (b == "Rock")){alert(win);return 1};
+    if((a == "Scissors") && (b == "Paper")){alert(win);return 1};
 
     // else loose
 
-    return loose
+    alert(loose);
+    return -1;
 }
 
-const playerSelection = "rock";
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+function game(){
 
+    //play 5 round game (playRound)   
+
+    let playerChoice = "";
+    let computerChoice = "";
+    let result = 0;
+
+    for( i = 0; i < 5; i++){
+  
+        playerChoice = prompt("Rock Paper or Scissors?");
+        computerChoice = getComputerChoice();
+        //keep score
+        result += playRound(playerChoice,computerChoice);
+    }
+    
+    //report winner / looser
+    if(result > 0){ return "You won!!"};
+    if(result === 0){ return "The game ends in a draw."};
+    if(result < 0){return "You lost!!"};
+    
+}
+
+
+alert(game())
 
 
 
