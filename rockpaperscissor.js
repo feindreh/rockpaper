@@ -6,20 +6,26 @@ function getComputerChoice(){
     switch (ranNum) {
         case 1:
             return "Rock";
-            break;
         case 2:
             return "Paper";
-            break;
         case 3:
             return "Scissors";
-            break;
     };
     console.log("ranNum Error");
 }
 
 function playRound(playerChoice,computerChoice){
 
-    // Definitions
+    // make playerChoice case insensitive
+
+    let upper = playerChoice.slice(0,1);
+    let downer = playerChoice.slice(1);
+    upper = upper.toUpperCase()
+    downer = downer.toLowerCase()
+
+    playerChoice = upper + downer
+
+    //Definitions
 
     let a = playerChoice;
     let b = computerChoice;
@@ -33,7 +39,7 @@ function playRound(playerChoice,computerChoice){
     };
 
     // Wann ist Win
-    
+
     if((a == "Rock") && (b == "Scissors")){return win};
     if((a == "Paper") && (b == "Rock")){return win};
     if((a == "Scissors") && (b == "Paper")){return win};
@@ -43,6 +49,9 @@ function playRound(playerChoice,computerChoice){
     return loose
 }
 
+const playerSelection = "rock";
+const computerSelection = getComputerChoice();
+console.log(playRound(playerSelection, computerSelection));
 
 
 
