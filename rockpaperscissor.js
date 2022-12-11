@@ -37,30 +37,51 @@ function playRound(playerChoice,computerChoice){
 
     // else loose
 
+    let text = ""
     switch(score){
         case 1:
-            return `You Win! ${playerChoice} beats ${computerChoice}`;           
+            text = `You Win! ${playerChoice} beats ${computerChoice}`;
+            humanScore++;  
+            break;         
         case 0:
-            return `Draw! Both took ${playerChoice}`;           
+            text = `Draw! Both took ${playerChoice}`;        
+            break;   
         case -1: 
-            return `You loose! ${playerChoice} looses to ${computerChoice}`;
+            text = `You loose! ${playerChoice} looses to ${computerChoice}`;
+            computerScore++
+            break;
     }
+    roundPlayed++
+    return text
     
 }
 
+function updateScore(){
+    myScore.textContent = humanScore
+    hisScore.textContent = computerScore
+    played.textContent = roundPlayed
+    if(humanScore == 5 || computerScore == 5){finishGame()};
+}
 
-
-
-
+function finishGame(){
+    if(humanScore == 5){alert("You did it !!! You Won!!!")}
+    if(computerScore == 5) {alert("Better luck next time")}
+    humanScore = 0
+    computerScore = 0
+    roundPlayed = 0
+}
 
 const btnRock = document.querySelector("#rock")
 const btnPaper = document.querySelector("#paper")
 const btnScissors = document.querySelector("#scissors")
 const round = document.querySelector("#round")
+const myScore = document.querySelector("#myScore")
+const hisScore = document.querySelector("#hisScore")
+const played = document.querySelector("#played")
 
 
 btnRock.addEventListener('click',() => {
-    round.textContent = playRound("Rock",getComputerChoice());
+    round.textContent = playRound("Rock",getComputerChoice())
 })
 
 btnPaper.addEventListener('click',() => {
@@ -70,6 +91,21 @@ btnPaper.addEventListener('click',() => {
 btnScissors.addEventListener('click',() => {
     round.textContent = playRound("Scissors",getComputerChoice());
 })
+
+addEventListener('click',() => {
+    updateScore();
+})
+
+
+
+let humanScore = 0
+let computerScore = 0
+let roundPlayed = 0
+
+
+
+
+
 
 
 
