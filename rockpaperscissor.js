@@ -63,7 +63,7 @@ function game(){
   
         playerChoice = prompt("Rock Paper or Scissors?");
         computerChoice = getComputerChoice();
-        //keep score
+    //keep score
         result += playRound(playerChoice,computerChoice);
     }
     
