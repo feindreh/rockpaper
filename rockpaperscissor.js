@@ -24,25 +24,52 @@ function playRound(playerChoice,computerChoice){
     let b = computerChoice;
 
     // Wann ist draw
-
+    let score = -1
     if(a == b){
-        return 0
+        score = 0
     };
 
     // Wann ist Win
 
-    if((a == "Rock") && (b == "Scissors")){return 1};
-    if((a == "Paper") && (b == "Rock")){return 1};
-    if((a == "Scissors") && (b == "Paper")){return 1};
+    if((a == "Rock") && (b == "Scissors")){score = 1};
+    if((a == "Paper") && (b == "Rock")){score = 1};
+    if((a == "Scissors") && (b == "Paper")){score = 1};
 
     // else loose
 
-    return -1;
-
+    switch(score){
+        case 1:
+            return `You Win! ${playerChoice} beats ${computerChoice}`;           
+        case 0:
+            return `Draw! Both took ${playerChoice}`;           
+        case -1: 
+            return `You loose! ${playerChoice} looses to ${computerChoice}`;
+    }
     
 }
 
 
+
+
+
+
+const btnRock = document.querySelector("#rock")
+const btnPaper = document.querySelector("#paper")
+const btnScissors = document.querySelector("#scissors")
+const round = document.querySelector("#round")
+
+
+btnRock.addEventListener('click',() => {
+    round.textContent = playRound("Rock",getComputerChoice());
+})
+
+btnPaper.addEventListener('click',() => {
+    round.textContent = playRound("Paper",getComputerChoice());
+})
+
+btnScissors.addEventListener('click',() => {
+    round.textContent = playRound("Scissors",getComputerChoice());
+})
 
 
 
